@@ -1,0 +1,26 @@
+//The first line contains two space-separated integers denoting the respective values of  (the number of variable-length arrays) and  (the number of queries).
+Each line  of the  subsequent lines contains a space-separated sequence in the format k a[i]0 a[i]1 … a[i]k-1 describing the -element array located at .
+Each of the  subsequent lines contains two space-separated integers describing the respective values of  (an index in array ) and  (an index in the array referenced by ) for a query.//
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    int n,q;
+    cin>>n>>q;
+    vector<vector<int>>arrays(n); 
+    for (int i=0;i<n;i++){
+        int k;
+        cin>>k;
+        arrays[i].resize(k);  
+        for (int j=0;j<k;j++) {
+            cin >> arrays[i][j];
+        }
+    }
+    for (int i=0;i<q;i++) {
+        int x, y;
+        cin >> x >> y;  
+        cout << arrays[x][y] << endl;
+    }
+    return 0;
+}
