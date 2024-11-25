@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cstdlib> //for absolute function
+using namespace std;
+
+void update(int *a, int *b) {
+    int org_a=*a;
+    int org_b=*b;
+    *a=org_a+ org_b;
+    *b=abs(org_a-org_b);
+}
+int main() {
+    int a,b;
+    cin >>a>>b; 
+    update(&a, &b);
+    cout << a << endl;
+    cout << b << endl;
+
+    return 0;
+}
