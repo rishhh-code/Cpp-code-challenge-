@@ -1,0 +1,28 @@
+//Sample Input
+3
+4
+6
+5
+Sample Output
+6//
+
+#include <iostream>
+using namespace std;
+
+int greatest(int a, int b, int c, int d)
+{
+    int greatest = a;
+    if(b > greatest) {
+        greatest = b;}
+    if(c > greatest) {
+        greatest = c; }
+    if(d > greatest) {
+        greatest = d;}
+    return greatest;}
+int main() {
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    int g = greatest(a, b, c, d);
+    cout << g; 
+    return 0;
+}
