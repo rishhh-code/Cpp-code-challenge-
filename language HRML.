@@ -1,0 +1,50 @@
+#include <iostream>
+#include <map>
+#include <vector>
+#include <stack>
+#include <sstream>
+using namespace std;
+
+int main() {
+    int n, q;
+    cin >> n >> q;
+    cin.ignore();
+
+    map<string, string> attributes;
+    stack<string> tagStack;
+    string line;
+
+    for (int i = 0; i < n; ++i) {
+        getline(cin, line);
+        line = line.substr(1, line.size() - 2);
+
+        if (line[0] == '/') {
+            tagStack.pop();
+        } else {
+            stringstream ss(line);
+            string tag;
+            ss >> tag;
+
+            string fullTag = tagStack.empty() ? tag : tagStack.top() + "." + tag;
+            tagStack.push(fullTag);
+
+            string attrName, equals, attrValue;
+            while (ss >> attrName >> equals >> attrValue) {
+                attrValue = attrValue.substr(1, attrValue.size() - 2);
+                attributes[fullTag + "~" + attrName] = attrValue;
+            }
+        }
+    }
+
+    for (int i = 0; i < q; ++i) {
+        string query;
+        cin >> query;
+        if (attributes.find(query) != attributes.end()) {
+            cout << attributes[query] << endl;
+        } else {
+            cout << "Not Found!" << endl;
+        }
+    }
+
+    return 0;
+}
